@@ -7,7 +7,7 @@ export default function Portfolio() {
 
     <div>
 
-      <h1 style={{ marginBottom: 30 }}>Portfolio</h1>
+      <h1 style={{ marginBottom: 80 , marginLeft:35 }}>Portfolio</h1>
 
       <div className="stats-grid">
 

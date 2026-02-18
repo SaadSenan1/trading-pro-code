@@ -1,23 +1,24 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { FaChartLine, FaWallet, FaExchangeAlt, FaCog } from "react-icons/fa"
+
 export default function Sidebar() {
-const logout = () => {
-  localStorage.removeItem("user")
-  window.location.href = "/login"
-}
-  const [open, setOpen] = useState(true)
-useEffect(() => {
-  if (open) {
-    document.body.style.overflow = "hidden"
-  } else {
-    document.body.style.overflow = "auto"
+
+  const navigate = useNavigate()
+
+  const logout = () => {
+    localStorage.removeItem("user")
+    navigate("/login", { replace: true })
   }
 
-  return () => {
-    document.body.style.overflow = "auto"
-  }
-}, [open])
+  const [open, setOpen] = useState(false)
+
+  // منع السكروول عند فتح السايدبار
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "auto"
+    return () => (document.body.style.overflow = "auto")
+  }, [open])
+
   const links = [
     { name: "Dashboard", path: "/dashboard", icon: <FaChartLine /> },
     { name: "Portfolio", path: "/portfolio", icon: <FaWallet /> },
@@ -39,7 +40,7 @@ useEffect(() => {
 
       {/* Sidebar */}
       <aside className={`sidebar ${open ? "open" : "closed"}`}>
-
+        
         <h2 className="logo"></h2>
 
         <nav>
@@ -47,6 +48,7 @@ useEffect(() => {
             <NavLink
               key={link.path}
               to={link.path}
+              onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 isActive ? "sidebar-link active" : "sidebar-link"
               }
@@ -56,7 +58,11 @@ useEffect(() => {
             </NavLink>
           ))}
         </nav>
-<button onClick={logout}>Logout</button>
+
+        <button className="logout-btn" onClick={logout}>
+          Logout
+        </button>
+
       </aside>
     </>
   )

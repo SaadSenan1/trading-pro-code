@@ -24,7 +24,9 @@ export default function Dashboard() {
 
     <div>
 
-      <h1 style={{ marginBottom: 30 }}>Dashboard</h1>
+      <h1 style={{ marginBottom: 80 
+      , marginLeft:35
+      }}>Dashboard</h1>
 
       {/* ===== Stats ===== */}
 

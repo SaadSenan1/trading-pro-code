@@ -225,7 +225,8 @@
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
   .auth-card {
-    width: 50%;
+    width: 70%;
+    height: 30%;
     justify-content: center;
   }
   .auth-card input {
@@ -243,9 +244,11 @@
   .auth-header nav { 
     justify-content: right; 
     gap: 15px;
-    margin-right: 75px;
+    margin-right: 50px;
    }
-
+.logo {
+  text-align: left;
+}
   /* Hero spacing */
   .auth-main {
     padding-top: 150px; /* زودنا المسافة من فوق */
@@ -253,4 +256,30 @@
 
   .hero-content h1 { font-size: 28px; }
   .hero-content p { font-size: 14px; }
+}
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.spinner {
+  border: 5px solid rgba(255,255,255,0.2);
+  border-top: 5px solid #00ff9c;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

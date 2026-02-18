@@ -321,6 +321,8 @@ button:focus-visible {
 
   .stats-grid {
     width: 80%;
+    justify-content: center;
+    margin: 0 auto;
   }
 
 }
@@ -364,22 +366,46 @@ button:focus-visible {
 }
 /* ===== Charts Grid ===== */
 
+/* ===== Charts Grid ===== */
 .charts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 24px;
   margin-top: 30px;
 }
+
+/* ===== Chart Card Wrapper ===== */
+.chart-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* يخلي الكارد مربع */
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
   .charts-grid {
     grid-template-columns: 1fr;
+    max-height: 100vh;
+  }
+  .chart-wrapper {
+    height: auto;
+    aspect-ratio: auto;
+    min-height: 200px; /* يحافظ على حجم مقبول على الموبايل */
   }
 }
-.chart-wrapper {
-  width: 100%;
-  height: 300px;
-}
-
 /* ===== Table Card ===== */
 
 .table-card {
@@ -398,38 +424,62 @@ button:focus-visible {
   font-weight: 600;
 }
 
-/* ===== Table ===== */
-
+/* ===== Table Wrapper ===== */
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  margin-bottom: 20px;
 }
 
+/* ===== Table ===== */
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 500px;
+  min-width: 500px; /* يبقى قابل للتمرير على الموبايل */
+  table-layout: auto;
+}
+
+th, td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  white-space: nowrap; /* يمنع تكسير النص */
 }
 
 th {
-  text-align: left;
   font-weight: 500;
   color: #94a3b8;
-  padding: 14px 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
 }
 
-td {
-  padding: 14px 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+/* ===== Light / Dark mode colors ===== */
+body.light td {
+  background-color: #000; /* أسود للـ td */
+  color: #fff; /* نص أبيض */
 }
 
+body.dark td {
+  background-color: #1f2937; /* لون داكن للـ dark mode */
+  color: #e5e7eb; /* نص أبيض فاتح */
+}
+
+/* Hover effect حسب الوضع */
+body.light tr:hover td {
+  background-color: rgba(255,255,255,0.1);
+}
+
+body.dark tr:hover td {
+  background-color: rgba(59,130,246,0.08);
+}
+
+/* Hover effect */
 tr:hover {
   background: rgba(59,130,246,0.08);
+  transition: background 0.2s ease;
 }
 
 /* Buy / Sell */
-
 .buy {
   color: #22c55e;
   font-weight: 600;
@@ -440,8 +490,7 @@ tr:hover {
   font-weight: 600;
 }
 
-/* Profit colors */
-
+/* Profit / Loss */
 .profit-positive {
   color: #22c55e;
   font-weight: 600;
@@ -452,6 +501,43 @@ tr:hover {
   font-weight: 600;
 }
 
+/* ===== Mobile Responsiveness ===== */
+@media (max-width: 768px) {
+  th, td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  table {
+    
+    min-width: 100%; /* يظهر كامل في عرض الهاتف */
+  }
+.table-card {
+  margin-top: 80px;
+}
+  .table-wrapper {
+    margin-bottom: 15px;
+  }
+}
+
+/* Optional: Zebra Striping for readability */
+tr:nth-child(even) {
+  background: rgba(255,255,255,0.02);
+}
+
+/* Optional: Scrollbar style for desktop */
+.table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
 /* ===== Settings ===== */
 
 .settings-card {
@@ -531,10 +617,7 @@ body.light-mode .hamburger span {
     padding: 0 10px;
   }
 
-  .table-card {
-    width: 70%;
-    justify-content: center;
-  }
+  
 
 }
 .settings-card {
@@ -700,13 +783,7 @@ body.light-mode .hamburger span {
   z-index: 100;
 }
 
-.logo {
-  font-size: 20px;
-  font-weight: 700;
-  background: linear-gradient(135deg,#3b82f6,#06b6d4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+
 
 .home-header nav {
   display: flex;
@@ -820,6 +897,7 @@ body.light-mode .hamburger span {
     font-size: 32px;
   }
 
+
 }
 .sidebar nav {
   display: flex;
@@ -885,5 +963,4 @@ body.light-mode .hamburger span {
   padding: 40px;
 }
 
-/* Light mode */
 

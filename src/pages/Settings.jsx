@@ -22,7 +22,7 @@ export default function Settings() {
 
     <div>
 
-      <h1 style={{ marginBottom: 30 }}>Settings</h1>
+      <h1 style={{ marginBottom: 80 }}>Settings</h1>
 
       <div className="settings-card">
 

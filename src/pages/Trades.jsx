@@ -6,7 +6,7 @@ export default function Trades() {
 
     <div>
 
-      <h1 style={{ marginBottom: 30 }}>Trades</h1>
+      <h1 style={{ marginBottom: 80 }}>Trades</h1>
 
       <Table />
 
